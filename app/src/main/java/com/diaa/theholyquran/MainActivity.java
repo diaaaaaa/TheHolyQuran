@@ -1,11 +1,17 @@
 package com.diaa.theholyquran;
 
 import android.os.Bundle;
+import android.util.Pair;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private String[] imageUrls = new String[]{
             "https://raw.githubusercontent.com/diaaaaaa/TheHolyQuran/master/app/src/main/assets/0604.jpg",
             "https://raw.githubusercontent.com/diaaaaaa/TheHolyQuran/master/app/src/main/assets/0603.jpg",
@@ -612,15 +618,33 @@ public class MainActivity extends AppCompatActivity {
             "https://raw.githubusercontent.com/diaaaaaa/TheHolyQuran/master/app/src/main/assets/0002.jpg"  ,
             "https://raw.githubusercontent.com/diaaaaaa/TheHolyQuran/master/app/src/main/assets/0001.jpg"
     };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ViewPager viewPager = findViewById(R.id.view_pager);
+        Spinner spin = (Spinner) findViewById(R.id.simpleSpinner);
+        spin.setOnItemSelectedListener(this);
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,imageUrls);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin.setAdapter(aa);
+
         ViewPagerAdapter adapter = new ViewPagerAdapter(this, imageUrls);
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(adapter.getCount() - 1);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+        ViewPager viewPager = findViewById(R.id.view_pager);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(this, imageUrls);
+        viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(adapter.getCount() - 1- position);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
 
