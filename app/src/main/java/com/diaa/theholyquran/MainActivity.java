@@ -599,8 +599,8 @@ public class MainActivity extends AppCompatActivity {
             "https://raw.githubusercontent.com/diaaaaaa/TheHolyQuran/master/app/src/main/assets/0015.jpg" ,
             "https://raw.githubusercontent.com/diaaaaaa/TheHolyQuran/master/app/src/main/assets/0014.jpg" ,
             "https://raw.githubusercontent.com/diaaaaaa/TheHolyQuran/master/app/src/main/assets/0013.jpg" ,
-            "https://raw.githubusercontent.com/diaaaaaa/TheHolyQuran/master/app/src/main/assets/0011.jpg" ,
             "https://raw.githubusercontent.com/diaaaaaa/TheHolyQuran/master/app/src/main/assets/0012.jpg" ,
+            "https://raw.githubusercontent.com/diaaaaaa/TheHolyQuran/master/app/src/main/assets/0011.jpg" ,
             "https://raw.githubusercontent.com/diaaaaaa/TheHolyQuran/master/app/src/main/assets/0010.jpg" ,
             "https://raw.githubusercontent.com/diaaaaaa/TheHolyQuran/master/app/src/main/assets/0009.jpg"  ,
             "https://raw.githubusercontent.com/diaaaaaa/TheHolyQuran/master/app/src/main/assets/0008.jpg"  ,
@@ -620,6 +620,7 @@ public class MainActivity extends AppCompatActivity {
         ViewPager viewPager = findViewById(R.id.view_pager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(this, imageUrls);
         viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(adapter.getCount() - 1);
     }
 }
 
